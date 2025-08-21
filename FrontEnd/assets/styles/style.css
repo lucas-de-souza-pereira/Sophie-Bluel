@@ -89,20 +89,48 @@ h2{
 	font-size: 30px;
 	color: #1D6154
 }
+
+li:hover {
+	color: #B1663C;
+}
+
+
+/*///////// NAV /////////////*/
+
 nav ul {
 	display: flex;
 	align-items: center;
 	list-style-type: none;
-
+	gap: 20px;
 }
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
 }
 
-li:hover {
-	color: #B1663C;
+nav a { 
+  text-decoration: none;
+  color: black;
 }
+
+nav a:visited{
+	color: black;
+}
+
+nav a:hover{
+	font-weight: bold;
+}
+
+nav a.active{
+	font-weight: bold;
+}
+
+nav img{
+	height: 22px;
+}
+
+/*///////// INTRODUCTION /////////////*/
+
 #introduction {
 	display: flex;
 	align-items: center;
@@ -177,8 +205,10 @@ li:hover {
 
 .gallery img {
 	width: 100%;
-
 }
+
+/*///////// CONTACT /////////////*/
+
 #contact {
 	width: 50%;
 margin: auto;
@@ -225,6 +255,6 @@ input[type="submit"]{
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
-	margin: 2em
+	margin: 2em;
 }
 

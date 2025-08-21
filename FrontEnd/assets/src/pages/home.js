@@ -1,10 +1,15 @@
 
 export async function initHome() {
-    const response = await fetch("http://localhost:5678/api/works");
-    const works = await response.json();
-    renderGallery(works);
-    renderFilter(works)
-    initFilters(works)
+    try {
+        const response = await fetch("http://localhost:5678/api/works");
+        const works = await response.json();
+        renderGallery(works);
+        await renderFilter()
+        initFilters(works)
+    }
+    catch (e){
+        console.error("Erreur chargement données", e);
+    }
 }
 
 
@@ -34,32 +39,35 @@ function renderGallery(works){
     }
 }
 
-function checkCategory(works){
+async function checkCategory(){
+try {
+    const response = await fetch("http://localhost:5678/api/categories");
+    const categories = await response.json();
 
-    const categories = works.map(work => work.category)
-
-    const uniqueCategories = []
-    const seen = new Set()
-
-    for (const cat of categories){
-        if (!seen.has(cat.id)){
-            seen.add(cat.id)
-            uniqueCategories.push(cat)
-        }
-    }   
-
+    const uniqueCategories = [] 
+    const seen = new Set() 
+    
+    for (const cat of categories){ 
+        if (!seen.has(cat.id)){ 
+            seen.add(cat.id) 
+            uniqueCategories.push(cat) } } 
+    
     return uniqueCategories
+}
+catch (e){
+    console.error("Erreur chargement données", e);
+}
 
 }
 
-function renderFilter(works){
+async function renderFilter(){
 
-    const uniqueCategories = checkCategory(works)
+    const categories = await checkCategory()
 
     const galleryFilters = document.querySelector(".gallery-filters")
     galleryFilters.innerHTML =""
 
-    const options = [{ id: "all", name: "Tous" }, ...uniqueCategories];
+    const options = [{ id: "all", name: "Tous" }, ...categories];
 
     for (let i = 0; i < options.length; i++){
 
