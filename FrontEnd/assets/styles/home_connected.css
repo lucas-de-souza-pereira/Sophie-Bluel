@@ -1,0 +1,19 @@
+.body-connected{
+    padding-top: 40px;
+}
+
+.edition-bar{
+
+    position: fixed;
+    top:0; left : 0; right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 59px;
+
+    background-color: black;
+    color: white;
+    font-size: 16px;
+
+}

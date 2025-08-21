@@ -12,7 +12,6 @@ export async function initHome() {
     }
 }
 
-
 function renderGallery(works){
 
     const galleryDiv = document.querySelector(".gallery")
@@ -115,3 +114,4 @@ function initFilters(works){
         })
     }
 }
+
