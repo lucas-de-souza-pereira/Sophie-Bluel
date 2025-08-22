@@ -17,3 +17,24 @@
     font-size: 16px;
 
 }
+
+
+.portfiolio-connected {
+	position: relative;
+	width: max-content;
+	margin: auto;
+}
+
+.portfiolio-connected a{
+
+	position: absolute;
+	top: 0;
+	left: 100%;
+	right: 0;
+	bottom: 0;
+	display: flex; 
+	align-items: center;
+	gap: 5px;
+	margin-left: 25px;
+	cursor: pointer;
+}
