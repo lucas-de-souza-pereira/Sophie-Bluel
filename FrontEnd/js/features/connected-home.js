@@ -26,12 +26,6 @@ export function renderLogout(){
     logoutElement.classList.add("logout")
     logoutElement.href = "index.html"
     logoutElement.innerText = "logout"
-
-    logoutElement.addEventListener("click", () =>{
-
-        removeToken()
-        
-    })
 }
 
 export function renderEditGallery(){
@@ -44,9 +38,21 @@ export function renderEditGallery(){
     const h2Portfolio = document.querySelector("#portfolio h2")
 
     const editLink = document.createElement("a")
+    editLink.id = "open-project-management"
     editLink.innerHTML = "<i class='fa-regular fa-pen-to-square'></i> modifier"
 
     portfolioElement.insertBefore(divPortfolio,h2Portfolio)
     divPortfolio.appendChild(h2Portfolio)
     divPortfolio.appendChild(editLink)
+}
+
+
+export function disconectUser(){
+
+        const logoutElement = document.getElementById("nav-login")
+        logoutElement.addEventListener("click", () =>{
+
+        removeToken()
+        
+    })
 }

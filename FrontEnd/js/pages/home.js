@@ -3,7 +3,7 @@ import { getCategories } from '../api/categories.js'
 import { getWorks } from '../api/works.js'
 
 import { renderGallery, renderFilter, initFilters } from '../features/gallery.js';
-import { editionBar, renderLogout, renderEditGallery } from "../features/connected-home.js"
+import { editionBar, renderLogout, renderEditGallery , disconectUser} from "../features/connected-home.js"
 
 export async function initHome(connected) {
     try {
@@ -21,13 +21,44 @@ export async function initHome(connected) {
 }
 
 
-
-
 function applyConnectedHome() {
+    // renders
     editionBar()
     renderLogout()
-    renderEditGallery()
+    renderEditGallery()   
+
+    // actions
+    disconectUser()
+    openProjectManagement()
+}   
+
+
+
+function openProjectManagement(){
+
+    const btnOpen = document.getElementById("open-project-management")
+    const dialog = document.getElementById("project-management")
+
+ 
+
+    btnOpen.addEventListener("click", () =>{
+        dialog.showModal()
+    })
+
+    closeModals(dialog)
 }
 
 
+function closeModals(dialog){
+    const btnClose = document.getElementById("modal-close")
 
+    btnClose.addEventListener("click", () =>{
+        dialog.close()
+    })
+
+    dialog.addEventListener("click", (e) =>{
+        if (e.target === dialog){
+            dialog.close()
+        }
+    })
+}
