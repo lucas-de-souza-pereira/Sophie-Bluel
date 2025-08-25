@@ -145,7 +145,8 @@ nav img{
 }
 
 #introduction article {
-	flex: 1
+	flex: 1;
+	padding-left: 20px;
 }
 #introduction h2 {
 	margin-bottom: 1em;
@@ -153,6 +154,8 @@ nav img{
 
 #introduction p {
 	margin-bottom: 0.5em;
+	width: 86%;
+	
 }
 
 /*///////// GALLERY /////////////*/
@@ -161,6 +164,7 @@ nav img{
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;
+	
 }
 
 
@@ -198,16 +202,25 @@ nav img{
 	color: #FFFFFF
 }
 
+.gallery figure{
+	width: 315px;
+}
+
 .gallery {
 	width: 100%;
+	margin: auto;
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-column-gap: 20px;
+	grid-template-columns: repeat(3, 315px);
+	justify-content: center;
+	margin-inline : auto;
+	grid-column-gap: 40px;
 	grid-row-gap: 20px;
 }
 
 .gallery img {
-	width: 100%;
+	height: 407px;
+	width: 315px;
+	object-fit: cover;
 }
 
 /*///////// CONTACT /////////////*/
@@ -244,7 +257,7 @@ margin: auto;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="submit"]{
+.sendBtn{
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
@@ -253,6 +266,10 @@ input[type="submit"]{
 	width: 180px;
 	text-align: center;
 	border-radius: 60px ;
+}
+
+.sendBtn:hover{
+	background-color: #0E2F28;
 }
 
 footer nav ul {

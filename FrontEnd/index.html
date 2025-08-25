@@ -55,7 +55,7 @@
 			<input type="email" name="email" id="contact-email">
 			<label for="message">Message</label>
 			<textarea name="message" id="contact-message" cols="30" rows="10"></textarea>
-			<input type="submit" value="Envoyer">
+			<input type="submit" value="Envoyer" class="sendBtn">
 		</form>
 	</section>
 </main>
@@ -68,18 +68,19 @@
 	</nav>
 </footer>
 
-<!-- modal1 -->
+<!-- modal -->
 
-<dialog id="project-management"  aria-labelledby="dlg-title">
+<dialog class="modal" id="project-management"  aria-labelledby="dlg-title">
+	<div class="modal-panel">
 	<form method="dialog" class="modal-header">
-		<button id = "modal-close" aria-label="Fermer"  value="cancel">
+		<button class="modal-close" id = "modal-close" aria-label="Fermer"  value="cancel">
 			<i class="fa-solid fa-xmark"></i>
 		</button>
 	</form>
 	<h2>Galerie photo</h2>
-	<div class="gallery" id = "gallery-edit"></div>
-	<button id = "add-picture"></button>
-	
+	<div class="modal-gallery" id = "gallery-edit"></div>
+	<button class="sendBtn" id ="add-picture">Ajouter une photo</button>
+	</div>
 </dialog>
 
 

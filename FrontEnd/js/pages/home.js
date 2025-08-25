@@ -13,7 +13,7 @@ export async function initHome(connected) {
         renderFilter(categories)
         initFilters(works)
 
-        if (connected) {applyConnectedHome()}
+        if (connected) {applyConnectedHome(works)}
     }
     catch (e){
         console.error("Erreur chargement données", e)
@@ -21,7 +21,7 @@ export async function initHome(connected) {
 }
 
 
-function applyConnectedHome() {
+function applyConnectedHome(works) {
     // renders
     editionBar()
     renderLogout()
@@ -29,23 +29,25 @@ function applyConnectedHome() {
 
     // actions
     disconectUser()
-    openProjectManagement()
+    modalProjectManagement(works)
 }   
 
 
 
-function openProjectManagement(){
+function modalProjectManagement(works){
 
     const btnOpen = document.getElementById("open-project-management")
     const dialog = document.getElementById("project-management")
-
- 
 
     btnOpen.addEventListener("click", () =>{
         dialog.showModal()
     })
 
     closeModals(dialog)
+
+
+    renderGalleryModal(works)
+
 }
 
 
@@ -61,4 +63,33 @@ function closeModals(dialog){
             dialog.close()
         }
     })
+}
+
+
+function renderGalleryModal(works){
+
+    let galleryDiv = document.querySelector(".modal-gallery")
+    galleryDiv.innerHTML = "";
+
+    for (let i = 0; i < works.length; i++){
+
+        const picture = works[i]
+
+        const figureElement = document.createElement("figure")
+        figureElement.dataset.id = picture.id
+
+        const pictureElement = document.createElement("img")
+        pictureElement.src = picture.imageUrl
+        pictureElement.alt = picture.title
+
+        const trashCan = document.createElement("button")
+        trashCan.type = "button"
+        trashCan.classList.add("del-project")
+        trashCan.innerHTML = '<i class="fa-solid fa-trash-can"></i>'
+
+        galleryDiv.appendChild(figureElement)
+        figureElement.appendChild(pictureElement)
+        figureElement.appendChild(trashCan)
+
+    }
 }

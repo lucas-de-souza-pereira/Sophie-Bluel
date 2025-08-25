@@ -2,7 +2,8 @@
 
 export function renderGallery(works){
 
-    const galleryDiv = document.querySelector(".gallery")
+    let galleryDiv = document.querySelector(".gallery")
+
     galleryDiv.innerHTML = "";
 
     for (let i = 0; i < works.length; i++){

@@ -49,6 +49,6 @@ main {
     size: 14px;
     color: #3D3D3D;
     display: block;
-     width: fit-content;
+    width: fit-content;
     margin: 0 auto;
 }
