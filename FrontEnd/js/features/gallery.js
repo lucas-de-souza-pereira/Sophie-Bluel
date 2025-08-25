@@ -1,18 +1,6 @@
 
-export async function initHome() {
-    try {
-        const response = await fetch("http://localhost:5678/api/works");
-        const works = await response.json();
-        renderGallery(works);
-        await renderFilter()
-        initFilters(works)
-    }
-    catch (e){
-        console.error("Erreur chargement données", e);
-    }
-}
 
-function renderGallery(works){
+export function renderGallery(works){
 
     const galleryDiv = document.querySelector(".gallery")
     galleryDiv.innerHTML = "";
@@ -38,33 +26,13 @@ function renderGallery(works){
     }
 }
 
-async function checkCategory(){
-try {
-    const response = await fetch("http://localhost:5678/api/categories");
-    const categories = await response.json();
 
-    const uniqueCategories = [] 
-    const seen = new Set() 
-    
-    for (const cat of categories){ 
-        if (!seen.has(cat.id)){ 
-            seen.add(cat.id) 
-            uniqueCategories.push(cat) } } 
-    
-    return uniqueCategories
-}
-catch (e){
-    console.error("Erreur chargement données", e);
-}
-
-}
-
-async function renderFilter(){
-
-    const categories = await checkCategory()
+export function renderFilter(categories){
 
     const galleryFilters = document.querySelector(".gallery-filters")
-    galleryFilters.innerHTML =""
+    const frag = document.createDocumentFragment()
+    galleryFilters.replaceChildren(frag)
+    // galleryFilters.innerHTML =""
 
     const options = [{ id: "all", name: "Tous" }, ...categories];
 
@@ -88,7 +56,7 @@ async function renderFilter(){
 }
 
 
-function initFilters(works){
+export function initFilters(works){
 
     const btnFilters = document.querySelectorAll(".gallery-button")
 

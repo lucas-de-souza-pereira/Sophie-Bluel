@@ -19,7 +19,7 @@ main {
     margin: auto;
     
 }
-#log-in > * {
+#log-in > *, p {
 	text-align: center;
 
 }

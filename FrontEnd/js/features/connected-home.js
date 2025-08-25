@@ -1,17 +1,6 @@
+import { removeToken } from "../utils/storage.js"
 
-export async function connectedHome() {
-    renderConnected()
-}
-
-
-function renderConnected(){
-    editionBar()
-    renderLogout()
-    renderEditGallery()
-}
-
-
-function editionBar(){
+export function editionBar(){
 
     const bodyElement = document.querySelector("body")
     bodyElement.classList.add("body-connected")
@@ -31,7 +20,7 @@ function editionBar(){
     bodyElement.insertBefore(editionBar, bodyElement.firstChild)
 }
 
-function renderLogout(){
+export function renderLogout(){
 
     const logoutElement = document.getElementById("nav-login")
     logoutElement.classList.add("logout")
@@ -40,12 +29,12 @@ function renderLogout(){
 
     logoutElement.addEventListener("click", () =>{
 
-        localStorage.removeItem("token");
+        removeToken()
         
     })
 }
 
-function renderEditGallery(){
+export function renderEditGallery(){
 
     const portfolioElement = document.getElementById("portfolio")
 
