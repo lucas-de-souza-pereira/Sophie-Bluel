@@ -219,3 +219,6 @@ border-bottom: 1px solid #B3B3B3 ;
 }
 
 
+.btn-add-picture:hover{
+	background-color:#444444;
+}
