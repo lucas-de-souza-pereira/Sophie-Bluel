@@ -4,7 +4,7 @@ import { getWorks , deleteWorks } from '../api/works.js'
 
 
 import { renderGallery } from '../features/gallery.js';
-import { renderFilter, initFilters } from '../features/filters.js';
+import { renderBtnFilter, initFilters } from '../features/filters.js';
 import { editionBar, renderLogout, renderEditGallery , disconectUser} from "../features/connected-home.js"
 
 export async function initHome(connected) {
@@ -12,7 +12,7 @@ export async function initHome(connected) {
         const [works, categories] = await Promise.all([getWorks(), getCategories()])
 
         renderGallery(works);
-        renderFilter(categories)
+        renderBtnFilter(categories)
         initFilters(works)
 
         if (connected) {applyConnectedHome(works)}
@@ -70,6 +70,7 @@ function deleteProject(gallery){
             let newWorks = await getWorks()
             renderGalleryModal(newWorks)
             renderGallery(newWorks)
+            initFilters(newWorks)
         }
         catch(err){
             if (err.status === 401 || err.status === 500){

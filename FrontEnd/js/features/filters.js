@@ -1,5 +1,6 @@
+import { renderGallery } from "./gallery.js";
 
-export function renderFilter(categories){
+export function renderBtnFilter(categories){
 
     const galleryFilters = document.querySelector(".gallery-filters")
     const frag = document.createDocumentFragment()
