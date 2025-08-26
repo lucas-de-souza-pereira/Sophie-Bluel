@@ -1,4 +1,3 @@
-import { method } from "lodash"
 import { API_BASE } from "../utils/config.js"
 import { getToken } from "../utils/storage.js"
 

@@ -1,6 +1,7 @@
 
 import { getCategories } from '../api/categories.js'
-import { getWorks } from '../api/works.js'
+import { getWorks , deleteWorks } from '../api/works.js'
+
 
 import { renderGallery } from '../features/gallery.js';
 import { renderFilter, initFilters } from '../features/filters.js';
@@ -16,8 +17,8 @@ export async function initHome(connected) {
 
         if (connected) {applyConnectedHome(works)}
     }
-    catch (e){
-        console.error("Erreur chargement données", e)
+    catch (err){
+        console.error("Erreur chargement données", err)
     }
 }
 
@@ -37,8 +38,10 @@ function applyConnectedHome(works) {
 
 function modalProjectManagement(works){
 
-    const btnOpen = document.getElementById("open-project-management")
     const dialog = document.getElementById("project-management")
+    const gallery = document.querySelector(".modal-gallery")
+
+    if (!dialog || !gallery) {return}
 
     // open close
     openModals(dialog)
@@ -48,20 +51,38 @@ function modalProjectManagement(works){
     renderGalleryModal(works)
 
     //actions
-    delProject()
+    deleteProject(gallery)
 }
 
-function delProject(){
+function deleteProject(gallery){
 
-    trashCan = document.querySelector("del-project")
+    gallery.addEventListener("click", async (e) =>{
 
-    trashCan.addEventListener("click", (e) =>{
+        const trashCan = e.target.closest(".del-project")
+        if (!trashCan) {return}
+
+        const figure = trashCan.closest("figure")
+        const id = Number(figure.dataset.id)
+        if (!id) {return}
+
+        try{
+            await deleteWorks(id)
+            let newWorks = await getWorks()
+            renderGalleryModal(newWorks)
+            renderGallery(newWorks)
+        }
+        catch(err){
+            if (err.status === 401 || err.status === 500){
+                console.error("Erreur :", err)
+            }
+        }
 
     })
 }
 
 
 function openModals(dialog){
+    const btnOpen = document.getElementById("open-project-management")
     btnOpen.addEventListener("click", () =>{
         dialog.showModal()
     })
