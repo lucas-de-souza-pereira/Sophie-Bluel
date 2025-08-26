@@ -39,20 +39,29 @@ function applyConnectedHome(works) {
 function modalProjectManagement(works){
 
     const dialog = document.getElementById("project-management")
-    const gallery = document.querySelector(".modal-gallery")
+    // const gallery = document.querySelector(".modal-gallery")
 
-    if (!dialog || !gallery) {return}
+    // if (!dialog || !gallery) {return}
 
     // open close
     openModals(dialog)
     closeModals(dialog)
 
     // renders
-    renderGalleryModal(works)
+//     renderGalleryModal(works)
 
-    //actions
-    deleteProject(gallery)
+//     //actions
+//     deleteProject(gallery)
+
 }
+
+function modalAddProjects(gallery){
+
+
+    gallery.addEventListener("click")
+}
+
+
 
 function deleteProject(gallery){
 
