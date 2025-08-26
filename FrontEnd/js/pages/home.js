@@ -2,7 +2,8 @@
 import { getCategories } from '../api/categories.js'
 import { getWorks } from '../api/works.js'
 
-import { renderGallery, renderFilter, initFilters } from '../features/gallery.js';
+import { renderGallery } from '../features/gallery.js';
+import { renderFilter, initFilters } from '../features/filters.js';
 import { editionBar, renderLogout, renderEditGallery , disconectUser} from "../features/connected-home.js"
 
 export async function initHome(connected) {
@@ -39,17 +40,32 @@ function modalProjectManagement(works){
     const btnOpen = document.getElementById("open-project-management")
     const dialog = document.getElementById("project-management")
 
+    // open close
+    openModals(dialog)
+    closeModals(dialog)
+
+    // renders
+    renderGalleryModal(works)
+
+    //actions
+    delProject()
+}
+
+function delProject(){
+
+    trashCan = document.querySelector("del-project")
+
+    trashCan.addEventListener("click", (e) =>{
+
+    })
+}
+
+
+function openModals(dialog){
     btnOpen.addEventListener("click", () =>{
         dialog.showModal()
     })
-
-    closeModals(dialog)
-
-
-    renderGalleryModal(works)
-
 }
-
 
 function closeModals(dialog){
     const btnClose = document.getElementById("modal-close")
